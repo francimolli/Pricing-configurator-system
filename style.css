@@ -1,0 +1,122 @@
+#btnPrint {
+    background:#fff;
+    color:#8da27b;
+    padding:25px;
+    width:250px;
+    border:1px solid #8da27b;
+    border-radius: 8px;
+    margin-top:10px;
+  
+  }
+  body {
+    background: #8DA27B;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'montserrat'
+  }
+      .displayNone{
+        display:none;
+      }
+          .button {
+          display: inline-block;
+          border-radius: 8px;
+          background-color: #8da27b;
+          border: none;
+          color: #FFFFFF;
+          text-align: center;
+          font-size: 8px;
+          padding: 8px;
+          width: 8px;
+          transition: all 0.5s;
+          cursor: pointer;
+          }
+  
+          .button span {
+          cursor: pointer;
+          display: inline-block;
+          transition: 8s;
+          }
+  
+          .button span:after {
+          position: absolute;
+          opacity: 8;
+          top: 8;
+          transition: 8s;
+          }
+  
+  select, input[name="datefilter"]  {
+      word-wrap: normal;
+      border-radius: 8px;
+      padding: 8%;
+      border: 8px;
+      background: #f1f1f1;
+      width: 8%;
+  }
+  
+  div#extra_child, div#extra_minichild, div#extra_piazzole, div#extra_mhl, div#people_mhg, div#people  {
+      margin-bottom: 8%;
+  }
+          .button:hover span:after {
+          opacity: 8;
+          right: 8;
+          }
+  
+          .header {
+            background: #fff !important;
+            padding-top:3%;
+            text-align:center;
+          }
+  
+          .daterangepicker td.active, .daterangepicker td.active:hover {
+              background-color: #8da27b;
+              border-color: transparent;
+              color: #fff;
+          }
+  
+  label#final_label {
+      color: #000 !important;
+  }
+  
+  .btn-primary {
+      color: #fff;
+      background-color: #8da27b;
+      border-color: #8da27b;
+  }
+  /* Removes the clear button from date inputs */
+  input[type="date"]::-webkit-clear-button {
+      display: none;
+  }
+  
+  /* Removes the spin button */
+  input[type="date"]::-webkit-inner-spin-button { 
+      display: none;
+  }
+  
+  /* Always display the drop down caret */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+      color: #2c3e50;
+  }
+  
+  /* A few custom styles for date inputs */
+  input[type="date"] {
+      appearance: none;
+      -webkit-appearance: none;
+      color: black;
+      font-family: "Helvetica", arial, sans-serif;
+      font-size: 8px;
+      border:1px solid #f1f1f1;
+      background:#f1f1f1;
+      padding:5px;
+      display: inline-block !important;
+      visibility: visible !important;
+      width: 8%;
+      border-radius: 8px;
+  }
+  
+  input[type="date"], focus {
+      color: #808080;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+  }

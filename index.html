@@ -1,0 +1,245 @@
+
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Generic Price Configurator</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
+    </script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://unpkg.com/flowbite@1.5.1/dist/datepicker.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />   
+    <link href="./style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+      <img src="generic-logo.png" style="text-align: center; max-width:200px" alt="">
+      <br><hr>
+
+    </div>
+    <br>
+    <h1 style="text-align:center; color:#fff">Generic Quote Configurator</h1><br>
+
+    <div id="dvContainer" style="border-radius: 8px; background: #fff; padding: 8%; margin-top:1%; margin-bottom:3%;" class="container">
+        <div class="row">
+            <div class="col sm-6"><h4>*Stay dates:</h4></div>
+            <div class="col sm-6">
+                <input type="date" id="start_date" required="required"
+                min="2022-04-01" max="2022-10-01"></div>
+        </div><br>
+        <div class="row">
+            <div class="col sm-6"></div>
+            <div class="col sm-6">
+                <input type="date" id="end_date" required="required"
+                    min="2022-04-02" max="2022-10-02"></div>
+        </div>
+        <br><hr style="border-style:dashed; width:80%;"><br>
+        <div class="row">
+            <div class="col sm-6"><h4>*Accommodation Type</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="alloggio" id="alloggio" onchange="showNhide()">
+                    <option value="none">---</option>
+                    <option value="piazzola">Pitch</option>
+                    <option value="mobilehome">Mobile Home</option>
+                    <option value="lodges">Glamping Lodges</option>
+                </select>
+            </div>
+        </div>
+        <br><hr style="border-style:dashed; width:80%;"><br>
+        <!--IF PITCH SELECTED-->
+        <div id="piazzola" style="display: none;" class="row">
+            <div class="col sm-6"><h4>*Pitch Type</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="piazzola" id="piazzola_selection" onchange="showNhide()">
+                    <option value="none">---</option>
+                    <option value="standard">Standard Pitch</option>
+                    <option value="silver">Silver Pitch</option>
+                    <option value="lake-view">Lake View</option>
+                    <option value="lake-view-xl">Lake View XL</option>
+                    <option value="small">Small</option>
+                </select>
+            </div>
+        </div>
+        <!--IF MOBILE HOME SELECTED-->
+        <div id="mobilehome" style="display: none;" class="row">
+            <div class="col sm-6"><h4>*Mobile Home Type</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="mobilehome" id="mb_selection" onchange="showNhide()">
+                    <option value="none">---</option>
+                    <option value="mobilehome-classic">Classic Mobile Home</option>
+                    <option value="mobilehome-river">River Mobile Home</option>
+                    <option value="mobilehome-comfort">Comfort Mobile Home</option>
+                    <option value="mobilehome-superior">Superior Mobile Home</option>
+                </select>
+            </div>
+        </div>
+        <!--IF GLAMPING LODGES SELECTED-->
+        <div id="lodges" style="display: none;" class="row">
+            <div class="col sm-6"><h4>*Glamping Lodge Type</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="lodges" id="lodges_selection" onchange="showNhide()">
+                    <option value="none">---</option>
+                    <option value="safari">Safari Lodge</option>
+                    <option value="air-lake-view">Air Lodge Lake View</option>
+                    <option value="air-river">Air Lodge River</option>
+                    <option value="mini-lake-view">Mini Lodge Lake View</option>
+                    <option value="mini-river">Mini Lodge River</option>
+                </select>
+            </div>
+        </div>
+        <br><hr style="border-style:dashed; width:80%;"><br>
+        <div id="people" style="display: none;" class="row">
+            <div class="col sm-6"><h4>Extra People</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="people" id="people_select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+        </div>        
+        <div id="extra_child" style="display: none;" class="row">
+            <div class="col sm-6"><h4>Extra Children (6-11 years)</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="extra_child" id="extra_child_select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+        </div>
+        <div id="extra_minichild" style="display: none;" class="row">
+            <div class="col sm-6"><h4>Extra Children (2-5 years)</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="extra_minichild" id="extra_minichild_select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+        </div>
+        <div id="people_mh" style="display: none;" class="row">
+            <div class="col sm-6"><h4>Extra People</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="people_mh" id="people_mh_select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+        <div id="people_lodges" style="display: none;" class="row">
+            <div class="col sm-6"><h4>Extra People</h4></div>
+            <div class="col sm-6">
+                <select style="width:100%" name="people_lodges" id="people_lodges_select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>        
+        <br><hr style="border-style:dashed; width:80%;"><br>
+        <div id="extra_piazzole" style="display: none" class="row">
+            <div class="col sm-6"><h4>Select extras:</h4></div>
+            <div class="col sm-6 ">
+                <input type="checkbox" id="vehicle" name="vehicle" value="car-motorbike-tent">
+                <label for="vehicle"> Car - Motorbike - Tent</label><br>
+                <input type="checkbox" id="dog" name="dog" value="dog">
+                <label for="dog"> Dog</label><br>
+                <input type="checkbox" id="gommone" name="gommone" value="gommone">
+                <label for="gommone"> Dinghy in Pitch</label><br>
+                <input type="checkbox" id="barca-boa" name="barca-boa" value="barca-boa">
+                <label for="barca-boa"> Boat and Buoy</label><br>
+            </div>
+        </div>
+        <div id="extra_mh" style="display: none" class="row">
+            <div class="col sm-6"><h4>Select extras:</h4></div>
+            <div class="col sm-6 ">
+                <input type="checkbox" id="vehicle_mh" name="vehicle" value="car-motorbike-tent">
+                <label for="vehicle_mh"> Car - Motorbike - Tent</label><br>
+                <input type="checkbox" id="gommone_mh" name="gommone" value="gommone">
+                <label for="gommone_mh"> Dinghy in Pitch</label><br>
+                <input type="checkbox" id="barca-boa_mh" name="barca-boa" value="barca-boa">
+                <label for="barca-boa_mh"> Boat and Buoy</label><br>
+            </div>
+        </div>
+        <div id="extra_lodges" style="display: none" class="row">
+            <div class="col sm-6"><h4>Select extras:</h4></div>
+            <div class="col sm-6 ">
+                <input type="checkbox" id="vehicle_lodges" name="vehicle" value="car-motorbike-tent">
+                <label for="vehicle_lodges"> Car - Motorbike - Tent</label><br>
+                <input type="checkbox" id="gommone_lodges" name="gommone" value="gommone">
+                <label for="gommone_lodges"> Dinghy in Pitch</label><br>
+                <input type="checkbox" id="barca-boa_lodges" name="barca-boa" value="barca-boa">
+                <label for="barca-boa_lodges"> Boat and Buoy</label><br>
+            </div>
+        </div>
+        <div id="extra_mhl" style="display: none" class="row">
+            <div class="col sm-6"><h4>Select extras:</h4></div>
+            <div class="col sm-6">
+                <input type="checkbox" id="cleaning" name="cleaning" value="cleaning">
+                <label for="cleaning"> Final Cleaning</label><br>
+                <input type="checkbox" id="dog_mhg" name="dog" value="dog">
+                <label for="dog_mhg"> Dog</label><br>
+                <input type="checkbox" id="gommone_mhg" name="gommone" value="gommone">
+                <label for="gommone_mhg"> Dinghy in Pitch</label><br>
+                <input type="checkbox" id="barca-boa_mhg" name="barca-boa" value="barca-boa">
+                <label for="barca-boa_mhg"> Boat and Buoy</label><br>
+            </div>
+        </div>
+        
+        <br><hr style="border-style:dashed; width:80%;"><br>
+        <div id="submitto_row"  style="display: none" class="row">
+            <div class="col-9">         
+            <div id="prezzo_alsubmitto"  style="display: none" class="row">
+                <div class="col-9"><label id="final_label" style="color:red; text-align: left; font-size:40px;"></label></div>
+            </div>
+
+        </div>
+        <div class="col-3">
+            <button class="button" onclick="innerPrice()"><span>Get Quote</span></button> 
+            <button class="button" style="display: none" id="btnPrint"><span>Print Detailed Quote</span></button>
+        </div>
+        </div>
+        <div class="row">
+            <label id="check_data_label" style="color:red; display: none; text-align: center;">THE DATES ENTERED ARE NOT CORRECT!</label>
+        </div>
+        
+        <h5 style="text-align:center; color:#8da27b">Fields marked with * are required</h5>
+    </div>
+    <script src="script.js"></script>
+ </body>
+</html>
